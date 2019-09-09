@@ -1,0 +1,19 @@
+server {
+
+# --- listen ----------------------------------------------------------------
+listen 80;
+
+# --- logging ---------------------------------------------------------------
+
+error_log /tmp/ngnix-error.log;
+
+access_log  /tmp/ngnix-access.log;
+
+# --- locations -------------------------------------------------------------
+location / {
+    proxy_pass "http://127.0.0.1:8080";
+    proxy_set_header Host $proxy_host;
+    proxy_set_header Host $host;}
+
+client_max_body_size 50M;
+}
